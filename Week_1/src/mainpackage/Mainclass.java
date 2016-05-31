@@ -33,7 +33,7 @@ public class Mainclass {
         String[] nimi_alku = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
         String[] nimi_kirjaimet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z" };        System.out.print("My name is " + nimi_alku[rand.nextInt(nimi_alku.length)]);
         
-        for (int a = 0; a<5; a++){
+        for (int a = 0; a<6 ; a++){
             System.out.print(nimi_kirjaimet[rand.nextInt(nimi_kirjaimet.length)]);
         }
         System.out.println();
