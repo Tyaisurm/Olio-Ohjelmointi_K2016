@@ -7,6 +7,7 @@
 package mainpackage;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 /**
@@ -21,6 +22,8 @@ public class BottleDispenser {
     ArrayList<Bottle> bottleList= new ArrayList();
     
     private int menu = 1;
+    private int a = -1;
+  
     private String input;
 
     //kututaan aluksi, yhteensä vain kerran
@@ -29,9 +32,17 @@ public class BottleDispenser {
         money = 0;
         
         //bottle.add();
-        for(int a = 1; a<7; a++){
-            bottleList.add(new Bottle());
-        }        
+        //for(int a = 1; a<7; a++){
+         //   bottleList.add(new Bottle());
+        //}
+        
+        bottleList.add(new Bottle("Pepsi Max", 0.5, 1.8));
+        bottleList.add(new Bottle("Pepsi Max",1.5, 2.2));
+        bottleList.add(new Bottle("Coca-Cola Zero", 0.5, 2.0));
+        bottleList.add(new Bottle("Coca-Cola Zero", 1.5, 2.5));
+        bottleList.add(new Bottle("Fanta Zero", 0.5, 1.95));
+        bottleList.add(new Bottle("Fanta Zero", 0.5, 1.95));
+
     }
   
     
@@ -43,16 +54,26 @@ public class BottleDispenser {
     
     
     public void buyBottle() {
-        //listBottles();
+        listBottles();
         //käyttäjän syöte
+        System.out.print("Valintasi: ");
+        Scanner skanneri = new Scanner(System.in);
+            input = skanneri.nextLine();
+            try {
+            a = Integer.parseInt(input);
+            } catch (NumberFormatException n){
+             System.out.println("Virheellinen syöte!");
+            }
+        a = a-1;
+            
+            
         
-        
-        if(money >= bottleList.get(0).getPrice()){
-            if(bottleList.get(0) != null){
-            money -= bottleList.get(0).getPrice();
+        if(money >= bottleList.get(a).getPrice()){
+            if(bottleList.get(a) != null){
+            money -= bottleList.get(a).getPrice();
             //bottles -= 1
-            System.out.println("KACHUNK! " + bottleList.get(0).getName() + " tipahti masiinasta!");
-            bottleList.remove(0);
+            System.out.println("KACHUNK! " + bottleList.get(a).getName() + " tipahti masiinasta!");
+            bottleList.remove(a);
 
         }
             else{
@@ -75,6 +96,7 @@ public class BottleDispenser {
     
     public void returnMoney(){
         if(money != 0){
+            money = 0;
         System.out.println("Klink klink. Sinne menivät rahat!");
     }
     }
