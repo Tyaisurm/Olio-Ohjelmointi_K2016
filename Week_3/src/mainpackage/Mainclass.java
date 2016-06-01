@@ -11,14 +11,20 @@ package mainpackage;
  * @author m7942
  */
 public class Mainclass {
-
+    
     /**
      * @param args the command line arguments
-     *
-     * jotakin jotakin....
      */
-    public static void main(String[] args) {
-        
+    public static void main(String[] args){
+        BottleDispenser possu = new BottleDispenser();
+        possu.addMoney();
+        possu.buyBottle();
+        possu.buyBottle();
+        possu.addMoney();
+        possu.addMoney();
+        possu.buyBottle();
+        possu.returnMoney();
         
     }
+
 }

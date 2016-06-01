@@ -10,9 +10,6 @@ package mainpackage;
  *
  * @author m7942
  */
-public class Pullo {
-    private Double hinta = 1.00;
-    private Double koko = 0.3;
-    private String nimi = "";
-    private String valmistaja = "";
+public class Bottle {
+    
 }
