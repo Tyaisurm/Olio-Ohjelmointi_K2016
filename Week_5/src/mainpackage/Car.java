@@ -6,7 +6,8 @@
 package mainpackage;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -41,15 +42,25 @@ public class Car {
         for (Object p : arraylist) {
             if (osat.containsKey(p.getClass().getSimpleName()) == false) {
                 osat.put(p.getClass().getSimpleName(), 1);
-                System.out.println(osat);
+                //System.out.println(osat);
             } else {
                 int maara = (int)osat.get(p.getClass().getSimpleName());
                 osat.put(p.getClass().getSimpleName(), maara+1);
             }
         }
        
-        System.out.println(osat);
-        
+        //System.out.println(osat);
+        Iterator iterator = osat.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry pairs = (Map.Entry)iterator.next();
+            int i = (Integer)pairs.getValue();
+            System.out.print("\t");
+            if(i > 1){
+               System.out.print(pairs.getValue() + " ");
+
+            }
+            System.out.println(pairs.getKey());
+        }
      
     }
 
