@@ -17,6 +17,10 @@ public class Mainclass {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Car auto = new Car();
+        auto.print();
+        // :DDDDDDDDDDDDDDDd
+        
     }
     
 }
