@@ -144,7 +144,6 @@ public class Bank {
     public void printAllA() {
         System.out.println("Kaikki tilit:");
         for (int a = 0; a < accounts.size(); a++) {
-            if (syote_1.equals(accounts.get(a).accountName)) {
                 if (accounts.get(a).accountType.equals("credit")) {
                     System.out.print("Tilinumero: " + accounts.get(a).accountName);
                     System.out.print(" Tilillä rahaa: " + accounts.get(a).money);
@@ -153,7 +152,7 @@ public class Bank {
                     System.out.print("Tilinumero: " + accounts.get(a).accountName);
                     System.out.println(" Tilillä rahaa: " + accounts.get(a).money);
                 }
-            }
+            
         }
     }
 }
