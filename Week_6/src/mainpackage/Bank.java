@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Bank {
 
-    private ArrayList<Account> accounts = new ArrayList();
+    private ArrayList accounts = new ArrayList();
     String syote_1;
     int syote_2, syote_3;
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,6 +41,7 @@ public class Bank {
         System.out.print("Syötä rahamäärä: ");
         syote_2 = Integer.parseInt(br.readLine());
         accounts.add(new Normal(syote_1, syote_2));
+
     }
 
     public void addMoney() throws IOException {
@@ -51,10 +52,22 @@ public class Bank {
 
         int loop = 0;
         for (int a = 0; a < accounts.size(); a++) {
-            if (syote_1.equals(accounts.get(a).accountName)) {
-                accounts.get(a).money += syote_2;
-                loop = 1;
-                break;
+            if (accounts.get(a) instanceof Credit) {
+                Credit tili;
+                tili = (Credit) accounts.get(a);
+                if (syote_1.equals(tili.accountName)) {
+                    tili.money += syote_2;
+                    loop = 1;
+                    break;
+                }
+            } else {
+                Normal tili = (Normal) accounts.get(a);
+
+                if (syote_1.equals(tili.accountName)) {
+                    tili.money += syote_2;
+                    loop = 1;
+                    break;
+                }
             }
         }
         if (loop == 0) {
@@ -70,22 +83,23 @@ public class Bank {
 
         int loop = 0;
         for (int a = 0; a < accounts.size(); a++) {
-            if (syote_1.equals(accounts.get(a).accountName)) {
-                if(accounts.get(a).accountType.equals("normal")){
-                if (accounts.get(a).money - syote_2 >= 0) {
-                    accounts.get(a).money -= syote_2;
+            if (accounts.get(a) instanceof Credit) {
+                Credit tili = (Credit) accounts.get(a);
+                if (tili.credit + tili.money >= 0) {
+                    tili.money -= syote_2;
                 } else {
-                    System.out.println("Rahaa ei ole tilillä tarpeeksi!");
+                    System.out.println("Tilillä ei ole tarpeeksi luottoa!");
                 }
                 loop = 1;
                 break;
-            }
-                else{
-                    if(accounts.get(a).credit+accounts.get(a).money >= 0){
-                        accounts.get(a).money -= syote_2;
-                    }
-                    else{
-                        System.out.println("Tilillä ei ole tarpeeksi luottoa!");
+            } else {
+                Normal tili = (Normal) accounts.get(a);
+
+                if (syote_1.equals(tili.accountName)) {
+                    if (tili.money - syote_2 >= 0) {
+                        tili.money -= syote_2;
+                    } else {
+                        System.out.println("Rahaa ei ole tilillä tarpeeksi!");
                     }
                     loop = 1;
                     break;
@@ -102,16 +116,28 @@ public class Bank {
         syote_1 = br.readLine();
         int loop = 0;
         for (int a = 0; a < accounts.size(); a++) {
-            if (syote_1.equals(accounts.get(a).accountName)) {
-                accounts.remove(a);
-                loop = 1;
-                System.out.println("Tili poistettu.");
-                break;
-            }
+            if (accounts.get(a) instanceof Credit) {
+                Credit tili = (Credit) accounts.get(a);
+                if (syote_1.equals(tili.accountName)) {
+                    accounts.remove(a);
+                    loop = 1;
+                    System.out.println("Tili poistettu.");
+                    break;
+                }
+            } else {
+                Normal tili = (Normal) accounts.get(a);
 
-        }
-        if (loop == 0) {
-            System.out.println("Tiliä ei ole olemassa.");
+                if (syote_1.equals(tili.accountName)) {
+                    accounts.remove(a);
+                    loop = 1;
+                    System.out.println("Tili poistettu.");
+                    break;
+                }
+
+            }
+            if (loop == 0) {
+                System.out.println("Tiliä ei ole olemassa.");
+            }
         }
     }
 
@@ -120,16 +146,20 @@ public class Bank {
         syote_1 = br.readLine();
         int loop = 0;
         for (int a = 0; a < accounts.size(); a++) {
-            if (syote_1.equals(accounts.get(a).accountName)) {
-                if (accounts.get(a).accountType.equals("credit")) {
-                    System.out.print("Tilinumero: " + accounts.get(a).accountName);
-                    System.out.print(" Tilillä rahaa: " + accounts.get(a).money);
-                    System.out.println(" Luottoraja: " + accounts.get(a).credit);
+            if (accounts.get(a) instanceof Credit) {
+                Credit tili = (Credit) accounts.get(a);
+                if (syote_1.equals(tili.accountName)) {
+                    System.out.print("Tilinumero: " + tili.accountName);
+                    System.out.print(" Tilillä rahaa: " + tili.money);
+                    System.out.println(" Luottoraja: " + tili.credit);
                     loop = 1;
                     break;
-                } else {
-                    System.out.print("Tilinumero: " + accounts.get(a).accountName);
-                    System.out.println(" Tilillä rahaa: " + accounts.get(a).money);
+                }
+            } else {
+                Normal tili = (Normal) accounts.get(a);
+                if (syote_1.equals(tili.accountName)) {
+                    System.out.print("Tilinumero: " + tili.accountName);
+                    System.out.println(" Tilillä rahaa: " + tili.money);
                     loop = 1;
                     break;
                 }
@@ -144,15 +174,17 @@ public class Bank {
     public void printAllA() {
         System.out.println("Kaikki tilit:");
         for (int a = 0; a < accounts.size(); a++) {
-                if (accounts.get(a).accountType.equals("credit")) {
-                    System.out.print("Tilinumero: " + accounts.get(a).accountName);
-                    System.out.print(" Tilillä rahaa: " + accounts.get(a).money);
-                    System.out.println(" Luottoraja: " + accounts.get(a).credit);
-                } else {
-                    System.out.print("Tilinumero: " + accounts.get(a).accountName);
-                    System.out.println(" Tilillä rahaa: " + accounts.get(a).money);
-                }
-            
+            if (accounts.get(a) instanceof Credit) {
+                Credit tili = (Credit) accounts.get(a);
+                System.out.print("Tilinumero: " + tili.accountName);
+                System.out.print(" Tilillä rahaa: " + tili.money);
+                System.out.println(" Luottoraja: " + tili.credit);
+            } else {
+                Normal tili = (Normal) accounts.get(a);
+                System.out.print("Tilinumero: " + tili.accountName);
+                System.out.println(" Tilillä rahaa: " + tili.money);
+            }
         }
+
     }
 }
