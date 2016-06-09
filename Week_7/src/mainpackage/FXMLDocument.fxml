@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpackage.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="395.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpackage.FXMLDocumentController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <Button fx:id="buttonInput" layoutX="109.0" layoutY="198.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="112.0" text=":D" />
+      <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" layoutY="60.0" prefHeight="89.0" prefWidth="202.0" text="TEKSTIÄ" />
+      <Button fx:id="clearButton" layoutX="221.0" layoutY="317.0" mnemonicParsing="false" onAction="#clearAction" text="Tyhjennä" />
+      <Slider fx:id="sizeSlider" blockIncrement="0.0" layoutX="22.0" layoutY="46.0" max="70.0" min="10.0" onMouseDragged="#sliderChange" onMousePressed="#sliderChange" onMouseReleased="#sliderChange" orientation="VERTICAL" showTickLabels="true" showTickMarks="true" value="13.0" />
+      <TextField fx:id="inputField" layoutX="30.0" layoutY="317.0" promptText="KIRJOITA!!!!!!" />
+      <CheckBox fx:id="pickWorld" layoutX="121.0" layoutY="230.0" mnemonicParsing="false" onAction="#yesWorld" text="Hello World...?" />
     </children>
 </AnchorPane>
