@@ -16,6 +16,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 
@@ -37,6 +39,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private CheckBox pickWorld;
     private boolean checked;
+    @FXML
+    private Label updatingLabel;
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+
     
     
     @FXML
@@ -45,14 +55,12 @@ public class FXMLDocumentController implements Initializable {
         if(checked == false){
         label.setText(inputField.getText());
         }
+        if(checked == true){
+            inputField.setText("HELLO WORLD");
+        }
     }
 
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
     @FXML
     private void clearAction(ActionEvent event) {
         if(checked == false){
@@ -74,10 +82,17 @@ public class FXMLDocumentController implements Initializable {
         checked = pickWorld.selectedProperty().get();
         if(checked == true){
             label.setText("HELLO WORLD!!! :DDDDDD");
+            updatingLabel.setText("HELLO WORLD");
         }
         else{
             label.setText("TEKSTIÄ");
         }
         }
+
+    @FXML
+    private void writingText(KeyEvent event) {
+        System.out.println(":DDDDDDDD");
+        updatingLabel.setText(inputField.getText());
     }
-    
+
+}
