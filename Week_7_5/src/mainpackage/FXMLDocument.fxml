@@ -15,19 +15,19 @@
             <items>
               <MenuItem fx:id="menuOpen" mnemonicParsing="false" onAction="#openFile" text="Open" />
                   <MenuItem fx:id="menuSave" mnemonicParsing="false" onAction="#saveFile" text="Save" />
-                  <MenuItem fx:id="menuClose" mnemonicParsing="false" onAction="#closeFile" text="Close" />
+                  <MenuItem fx:id="menuClose" mnemonicParsing="false" onAction="#closeFile" text="Close(TURHA)" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem fx:id="menuAbout" mnemonicParsing="false" onAction="#showAbout" text="About" />
+              <MenuItem fx:id="menuAbout" mnemonicParsing="false" onAction="#showAbout" text="About(TURHA)" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
       <TabPane fx:id="tabPanel" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
          <tabs>
-            <Tab fx:id="tab" text="Untitled Tab">
+            <Tab fx:id="tab" text="Turha täbi :D">
               <content>
                 <AnchorPane>
                      <children>

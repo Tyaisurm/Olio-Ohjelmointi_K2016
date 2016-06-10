@@ -89,7 +89,7 @@ public class FXMLDocumentController implements Initializable {
                 dialog.setScene(scene);
                 dialog.show();
             }
-            System.out.println(text);
+            //System.out.println(text);
             textArea.setText(text);
 
         } catch (FileNotFoundException ex) {
@@ -120,11 +120,14 @@ public class FXMLDocumentController implements Initializable {
         else{
 
         try {
-            OutputStreamWriter output = new OutputStreamWriter(new FileOutputStream(file),Charset.forName("UTF-8").newEncoder());
-            byte[] inBytes = textArea.getText().getBytes();
-            for (int x = 0; x < textArea.getLength(); x++) {
-                output.write(inBytes[x]);
-            }
+            OutputStreamWriter output = new OutputStreamWriter(new FileOutputStream(file),"UTF-8");
+            //byte[] inBytes = textArea.getText().getBytes();
+            String cbuf = textArea.getText();
+            //for (int x = 0; x < textArea.getLength(); x++) {
+                output.write(cbuf);
+                //ouput.write(inBytes[x]);
+                //System.out.println(cbuf);
+            //}
 
             output.close();
 
