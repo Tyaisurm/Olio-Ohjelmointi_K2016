@@ -27,6 +27,7 @@ public class Mainclass extends Application {
         
         stage.setScene(scene);
         stage.show();
+
     }
 
     /**
