@@ -6,9 +6,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpackage.FXMLDocumentController">
-    <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
-    </children>
-</AnchorPane>
+<VBox prefHeight="398.0" prefWidth="341.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpackage.FXMLDocumentController">
+   <children>
+      <AnchorPane prefHeight="398.0" prefWidth="339.0">
+         <children>
+            <Button fx:id="addMoneyButton" layoutX="181.0" layoutY="54.0" mnemonicParsing="false" onAction="#addMoney" text="Lisää rahaa" />
+            <Slider fx:id="addMoneySlider" layoutX="161.0" layoutY="15.0" majorTickUnit="1.0" max="5.0" prefHeight="38.0" prefWidth="140.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+            <Button fx:id="returnMoneyButton" layoutX="67.0" layoutY="85.0" mnemonicParsing="false" onAction="#returnMoney" text="Palauta rahat ja tulosta kuitti" />
+            <ComboBox fx:id="chooseBottleButton" layoutX="10.0" layoutY="17.0" onAction="#listBottles" prefWidth="150.0" promptText="Valitse pullo" />
+            <Button fx:id="buyButton" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#buyBottle" text="Osta" />
+            <ComboBox fx:id="chooseSizeButton" layoutX="10.0" layoutY="51.0" onAction="#listBottles" prefWidth="150.0" promptText="Valitse koko" />
+            <Label fx:id="receiveBillLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="363.0" prefHeight="25.0" prefWidth="341.0" />
+            <Label fx:id="printScreenLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="118.0" prefHeight="258.0" prefWidth="344.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
