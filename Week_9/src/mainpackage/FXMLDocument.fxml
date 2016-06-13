@@ -7,38 +7,43 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="672.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpackage.FXMLDocumentController">
    <children>
-      <AnchorPane prefHeight="683.0" prefWidth="460.0">
+      <AnchorPane prefHeight="224.0" prefWidth="472.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Valitse Teatteri" AnchorPane.bottomAnchor="638.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="14.0">
+            <Label layoutX="14.0" layoutY="14.0" text="Valitse Teatteri" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="66.0" text="Alkamisväli:" AnchorPane.bottomAnchor="586.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="66.0">
+            <Label layoutX="13.0" layoutY="66.0" text="Alkamisväli:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="66.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <ComboBox layoutX="13.0" layoutY="34.0" prefHeight="25.0" prefWidth="209.0" AnchorPane.bottomAnchor="613.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="34.0" />
-            <TextField layoutX="13.0" layoutY="88.0" prefHeight="25.0" prefWidth="209.0" promptText="Alkamisaika" AnchorPane.bottomAnchor="559.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="88.0" />
-            <TextField layoutX="241.0" layoutY="34.0" prefHeight="25.0" prefWidth="209.0" promptText="Esityspäivä" AnchorPane.bottomAnchor="613.0" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="34.0" />
-            <TextField layoutX="241.0" layoutY="88.0" prefHeight="25.0" prefWidth="209.0" promptText="Päättymisaika" AnchorPane.bottomAnchor="559.0" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="88.0" />
-            <ListView layoutX="4.0" layoutY="226.0" prefHeight="444.0" prefWidth="477.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="226.0" />
-            <Pane layoutX="140.0" layoutY="312.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="312.0">
-               <children>
-                  <ProgressIndicator layoutX="74.0" layoutY="74.0" />
-               </children>
-            </Pane>
-            <Button layoutX="176.0" layoutY="120.0" mnemonicParsing="false" text="Listaa elokuvat" AnchorPane.bottomAnchor="527.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="120.0" />
-            <Label layoutX="7.0" layoutY="156.0" text="Tai hae elokuvaa nimellä:" AnchorPane.bottomAnchor="496.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="257.0" AnchorPane.topAnchor="156.0">
+            <ComboBox fx:id="chooseMovieCombo" layoutX="13.0" layoutY="34.0" prefHeight="25.0" prefWidth="209.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="34.0" />
+            <TextField fx:id="startingTimeField" layoutX="13.0" layoutY="88.0" prefHeight="25.0" prefWidth="209.0" promptText="Alkamisaika" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="88.0" />
+            <TextField fx:id="airingDateField" layoutX="241.0" layoutY="34.0" prefHeight="25.0" prefWidth="209.0" promptText="Esityspäivä" AnchorPane.leftAnchor="241.0" AnchorPane.topAnchor="34.0" />
+            <TextField fx:id="endingTimeField" layoutX="241.0" layoutY="88.0" prefHeight="25.0" prefWidth="209.0" promptText="Päättymisaika" AnchorPane.leftAnchor="241.0" AnchorPane.topAnchor="88.0" />
+            <Button fx:id="listMoviesButton" layoutX="176.0" layoutY="120.0" mnemonicParsing="false" onAction="#searchByDate" text="Listaa elokuvat" AnchorPane.leftAnchor="176.0" AnchorPane.topAnchor="120.0" />
+            <Label layoutX="7.0" layoutY="156.0" text="Tai hae elokuvaa nimellä:" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="156.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField layoutX="226.0" layoutY="153.0" prefHeight="25.0" prefWidth="246.0" promptText="Anna elokuvan nimi" AnchorPane.bottomAnchor="494.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="153.0" />
-            <Button layoutX="226.0" layoutY="184.0" mnemonicParsing="false" text="Nimihaku" AnchorPane.bottomAnchor="463.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="177.0" AnchorPane.topAnchor="184.0" />
+            <TextField fx:id="nameSearchField" layoutX="226.0" layoutY="153.0" prefHeight="25.0" prefWidth="246.0" promptText="Anna elokuvan nimi" AnchorPane.leftAnchor="226.0" AnchorPane.topAnchor="153.0" />
+            <Button fx:id="nameSearchButton" layoutX="226.0" layoutY="184.0" mnemonicParsing="false" onAction="#searchByName" text="Nimihaku" AnchorPane.leftAnchor="226.0" AnchorPane.topAnchor="184.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane VBox.vgrow="ALWAYS">
+         <children>
+            <ListView fx:id="listView" layoutX="61.0" layoutY="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="prograssIndicatorLabel" alignment="CENTER" layoutX="138.0" layoutY="161.0" prefHeight="101.0" prefWidth="197.0" text="Loading...">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <ProgressIndicator fx:id="progressIndicatorIcon" layoutX="210.0" layoutY="151.0" />
          </children>
       </AnchorPane>
    </children>
