@@ -58,8 +58,9 @@ public class FXMLDocumentController implements Initializable {
         // TODO
     }
 
-    @FXML
+    @FXML //Avataan haluttu tiedosto, joko .txt tai mikä tahansa
     private void openFile(ActionEvent event) {
+        //luodaan tiedostonvalitsin
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Avaa tiedosto");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -73,7 +74,7 @@ public class FXMLDocumentController implements Initializable {
         if (file == null) {
             //
         } else {
-
+            //kokeillaan lukemista
             try {
                 InputStreamReader input = new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8").newDecoder());
                 int c;
@@ -84,17 +85,19 @@ public class FXMLDocumentController implements Initializable {
                     }
                     input.close();
                 } catch (IOException ex) {
+                    //virhe-dialogi
                     Stage dialog = new Stage();
                     dialog.initStyle(StageStyle.UTILITY);
                     Scene scene = new Scene(new Group(new Text("Tiedoston " + file.getName() + " lukeminen ei onnistunut")));
                     dialog.setScene(scene);
                     dialog.show();
                 }
-                //System.out.println(text);
+                //luodaan uusi tab ja valitaan se. Sisältö luetaan sinne
                 Tab tab = createTab(file.getName(), text);
                 tabPanel.getSelectionModel().select(tab);
 
             } catch (FileNotFoundException ex) {
+                //virhe-dialogi
                 Stage dialog = new Stage();
                 dialog.initStyle(StageStyle.UTILITY);
                 Scene scene = new Scene(new Group(new Text("Tiedostoa " + file.getName() + " ei löytynyt")));
@@ -104,8 +107,9 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    @FXML
+    @FXML //tallennetaan valitun tabin sisältö haluttiuun tiedostoon
     private void saveFile(ActionEvent event) {
+        //luodaan uusi tiedostonvalitsin
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Tallenna tiedosto");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -121,35 +125,29 @@ public class FXMLDocumentController implements Initializable {
         } else {
 
             try {
-                    //EFAEKLNFÖJBFKÅNSÖFKNCF
-                
-                
-                //
-                
+                //kokeillaan kirjoittamista valittuun tiedostoon
                 
                 OutputStreamWriter output = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
-                //byte[] inBytes = textArea.getText().getBytes();
+                
+                //valitaan avoin tab ja otetaan sen sisältä TextArean sisältö muuttujaan
                 Tab tab = tabPanel.getSelectionModel().getSelectedItem();
                 AnchorPane ap = (AnchorPane)tab.getContent();
                 TextArea ta = (TextArea)ap.getChildren().get(0);
-                //System.out.println(ta.getText());
                 String cbuf = ta.getText();
-                //for (int x = 0; x < textArea.getLength(); x++) {
                 output.write(cbuf);
-                //ouput.write(inBytes[x]);
-                //System.out.println(cbuf);
-                //}
 
                 output.close();
                 tab.setText(file.getName());
 
             } catch (FileNotFoundException ex) {
+                //virhe-dialogi
                 Stage dialog = new Stage();
                 dialog.initStyle(StageStyle.UTILITY);
                 Scene scene = new Scene(new Group(new Text("Tiedostoa " + file.getName() + " ei löytynyt.")));
                 dialog.setScene(scene);
                 dialog.show();
             } catch (IOException ex) {
+                //virhe-dialogi
                 Stage dialog = new Stage();
                 dialog.initStyle(StageStyle.UTILITY);
                 Scene scene = new Scene(new Group(new Text("Tiedostoon " + file.getName() + " kirjoittaminen ei onnistunut")));
@@ -159,18 +157,22 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    @FXML
+    @FXML //luodaan uusi tiedosto, eli avataan uusi tab joka on tyhjä sisällöltään
     private void newFile(ActionEvent event) {
         Tab tab = createTab("Uusi Tiedosto", "");
         tabPanel.getSelectionModel().select(tab);
     }
 
-    @FXML
+    @FXML //näytetään "About" info
     private void showAbout(ActionEvent event) {
         int response = JOptionPane.showConfirmDialog(null, "Tämä on vain opiskelijan tekemä, HYYYYYYVIN\npaska tekstieditori :D", "About", JOptionPane.PLAIN_MESSAGE);
     }
 
     private Tab createTab(String nimi, String teksti) {
+        
+        //tässä metodissa luodaan uusi tab, jolle asetetaan tekstisisältö ja nimi.
+        //Palautetaan kyseinen tab, jotta voidaan vaivattomasti valita se avatessa.
+        //Samalla tarkistetaan olemassa olevat tabit ja niiden ID:t
         Tab tab = new Tab();
         tab.setText(nimi);
         tab.setClosable(true);
