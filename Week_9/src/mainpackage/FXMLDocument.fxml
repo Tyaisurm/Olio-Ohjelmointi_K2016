@@ -21,7 +21,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <ComboBox fx:id="chooseMovieCombo" layoutX="13.0" layoutY="34.0" prefHeight="25.0" prefWidth="209.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="34.0" />
+            <ComboBox fx:id="chooseMovieCombo" layoutX="13.0" layoutY="34.0" prefHeight="25.0" prefWidth="209.0" promptText="Valitse kaupunki/teatteri" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="34.0" />
             <TextField fx:id="startingTimeField" layoutX="13.0" layoutY="88.0" prefHeight="25.0" prefWidth="209.0" promptText="Alkamisaika" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="88.0" />
             <TextField fx:id="airingDateField" layoutX="241.0" layoutY="34.0" prefHeight="25.0" prefWidth="209.0" promptText="Esityspäivä" AnchorPane.leftAnchor="241.0" AnchorPane.topAnchor="34.0" />
             <TextField fx:id="endingTimeField" layoutX="241.0" layoutY="88.0" prefHeight="25.0" prefWidth="209.0" promptText="Päättymisaika" AnchorPane.leftAnchor="241.0" AnchorPane.topAnchor="88.0" />
@@ -38,12 +38,12 @@
       <AnchorPane VBox.vgrow="ALWAYS">
          <children>
             <ListView fx:id="listView" layoutX="61.0" layoutY="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label fx:id="prograssIndicatorLabel" alignment="CENTER" layoutX="138.0" layoutY="161.0" prefHeight="101.0" prefWidth="197.0" text="Loading...">
+            <Label fx:id="progressIndicatorLabel" alignment="CENTER" layoutX="138.0" layoutY="161.0" prefHeight="101.0" prefWidth="197.0" text="Loading..." visible="false">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ProgressIndicator fx:id="progressIndicatorIcon" layoutX="210.0" layoutY="151.0" />
+            <ProgressIndicator fx:id="progressIndicatorIcon" layoutX="210.0" layoutY="151.0" visible="false" />
          </children>
       </AnchorPane>
    </children>
