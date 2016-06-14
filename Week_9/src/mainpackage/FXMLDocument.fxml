@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpackage.FXMLDocumentController">
+<VBox prefHeight="624.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpackage.FXMLDocumentController">
    <children>
       <AnchorPane prefHeight="224.0" prefWidth="472.0" VBox.vgrow="ALWAYS">
          <children>

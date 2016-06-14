@@ -24,7 +24,13 @@ public class Mainclass extends Application {
         stage.setTitle("Finnkino-elokuvahaku :D");
         Scene scene = new Scene(root);
         
+        
         stage.setScene(scene);
+        //stage.setResizable(false);
+        stage.setMaxHeight(624);
+        stage.setMaxWidth(485);
+        stage.setMinHeight(624);
+        stage.setMinWidth(485);
         stage.show();
     }
 
