@@ -15,28 +15,16 @@
             <items>
               <MenuItem fx:id="menuOpen" mnemonicParsing="false" onAction="#openFile" text="Open" />
                   <MenuItem fx:id="menuSave" mnemonicParsing="false" onAction="#saveFile" text="Save" />
-                  <MenuItem fx:id="menuClose" mnemonicParsing="false" onAction="#closeFile" text="Close(TURHA)" />
+                  <MenuItem fx:id="menuNew" mnemonicParsing="false" onAction="#newFile" text="New" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem fx:id="menuAbout" mnemonicParsing="false" onAction="#showAbout" text="About(TURHA)" />
+              <MenuItem fx:id="menuAbout" mnemonicParsing="false" onAction="#showAbout" text="About" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <TabPane fx:id="tabPanel" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-         <tabs>
-            <Tab fx:id="tab" text="Turha täbi :D">
-              <content>
-                <AnchorPane>
-                     <children>
-                        <TextArea fx:id="textArea" prefHeight="407.0" prefWidth="533.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-         </tabs>
-      </TabPane>
+      <TabPane fx:id="tabPanel" tabClosingPolicy="SELECTED_TAB" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
