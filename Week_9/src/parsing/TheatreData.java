@@ -12,7 +12,6 @@ package parsing;
  */
 public class TheatreData {
     public TheatreData(){
-        //tyhjä
     }
     
     protected int id;
