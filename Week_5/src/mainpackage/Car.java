@@ -38,7 +38,7 @@ public class Car {
     public void print() {
         System.out.println("Autoon kuuluu:");
         
-        TreeMap<String, Integer> osat = new TreeMap<String, Integer>();
+        TreeMap<String, Integer> osat = new TreeMap<>();
         for (Object p : arraylist) {
             if (osat.containsKey(p.getClass().getSimpleName()) == false) {
                 osat.put(p.getClass().getSimpleName(), 1);
