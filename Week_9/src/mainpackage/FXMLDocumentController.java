@@ -140,6 +140,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void printList(Map<String, ArrayList<ShowData>> map) {
         if (map.isEmpty()) {
+            JOptionPane.showConfirmDialog(null, "Näillä hakuvalinnoilla ei löytynyt yhtään sopivaa kohdetta", "Ei hakutuloksia", JOptionPane.PLAIN_MESSAGE);
             //System.out.println("Map(elokuvat) on tyhjä!");
         } else {
             SimpleDateFormat sdfD = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
