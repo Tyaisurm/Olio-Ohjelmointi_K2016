@@ -165,7 +165,7 @@ public class FXMLDocumentController implements Initializable {
     private void showAbout(ActionEvent event) {
         int response = JOptionPane.showConfirmDialog(null, "Tämä on vain opiskelijan tekemä, HYYYYYYVIN\npaska tekstieditori :D", "About", JOptionPane.PLAIN_MESSAGE);
     }
-
+    
     private Tab createTab(String nimi, String teksti) {
         
         //tässä metodissa luodaan uusi tab, jolle asetetaan tekstisisältö ja nimi.
@@ -189,12 +189,12 @@ public class FXMLDocumentController implements Initializable {
         int i = 0;
         System.out.println(tabPanel.getTabs().size());
         if (tabPanel.getTabs().size() > 0) {
-            for (Tab o : tabPanel.getTabs()) {
+            for (Tab o : tabPanel.getTabs()) {//tästä puuttuu muuttuja "i", koska for looppi on erilainen!!!!!!
                 id = ("Tab_" + i);
                 if (!o.getId().equals(id)) {
                     break;
                 } else {
-                    //
+                    i++;
                 }
             }
         } else {
