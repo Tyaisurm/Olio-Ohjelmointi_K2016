@@ -8,8 +8,10 @@ package mainpackage;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -21,7 +23,15 @@ public class Mainclass extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        root.setStyle("-fx-background-image:url('" + getClass().getResource("Suomen-kartta.jpg").toExternalForm() + "')");
+        
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+        stage.setX(bounds.getMinX());
+        stage.setY(bounds.getMinY());
+        stage.setWidth(bounds.getWidth());
+        stage.setHeight(bounds.getHeight());
+        
+        root.setStyle("-fx-background-image: url('" + getClass().getResource("Suomen-kartta.jpg").toExternalForm() + "');-fx-background-size: cover;-fx-background-position: center center");
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
