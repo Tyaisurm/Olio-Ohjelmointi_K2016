@@ -108,7 +108,7 @@ public class ParseXML {
         return al;
     }
 
-    public Map<String, ArrayList<ShowData>> getMovies(int id, String startT, String endT, String airD, String movieName, int mode) {
+    private Map<String, ArrayList<ShowData>> getMovies(int id, String startT, String endT, String airD, String movieName, int mode) {
         String urlFinal;
         if (mode == 0) {
             String url1 = "http://www.finnkino.fi/xml/Schedule/?area=";

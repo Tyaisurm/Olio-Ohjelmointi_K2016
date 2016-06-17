@@ -14,7 +14,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -57,8 +59,16 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        listMoviesButton.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent e){
+                
+            }
+        }
+        );
+        
         this.parseXML = ParseXML.getInstance();
-
         String code = parseXML.getCode("http://www.finnkino.fi/xml/TheatreAreas/");
         ArrayList<TheatreData> al = parseXML.getTheatresCombo(code, "TheatreArea", "ID", "Name");
         chooseMovieCombo.getItems().addAll(al);
@@ -68,6 +78,7 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Mäppi/ArrayList on: ");
         for (TheatreData al1 : al) {
             System.out.println(al1.getID() + " ja " + al1.getName());
+        
         }
     }
 
@@ -84,11 +95,10 @@ public class FXMLDocumentController implements Initializable {
         String movieName = null;
 
         /*if (air.isEmpty()) {
-            Date dateDefault = new Date();
-            air = sdfIN.format(dateDefault);
-            airingDateField.setText(air);
-        }*/
-
+         Date dateDefault = new Date();
+         air = sdfIN.format(dateDefault);
+         airingDateField.setText(air);
+         }*/
         try {
             sdfIN.setLenient(false);
             Date airD = sdfIN.parse(air);
@@ -113,7 +123,7 @@ public class FXMLDocumentController implements Initializable {
                 int theatreID = theatre.getID();
                 map = parseXML.getMoviesByDate(theatreID, startT, endT, air, movieName, mode);
             }
-        } catch (ParseException | TestException ex) {
+        } catch (ParseException | TestException | NumberFormatException sa) {
             JOptionPane.showConfirmDialog(null, "Virheellinen kenttä! Tarkista syöte.\nVinkki: aika on muotoa hh:mm ja päivämäärä muotoa dd.mm.yyyy.", "Virhe!", JOptionPane.PLAIN_MESSAGE);
             //System.out.println("Virheellinen kenttä!");
         }
@@ -123,6 +133,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void searchByName(ActionEvent event) {
+
+        
         listView.getItems().clear();
         Map<String, ArrayList<ShowData>> map = new TreeMap<>();
         int mode = 1;
@@ -131,13 +143,14 @@ public class FXMLDocumentController implements Initializable {
         String air = null;
         String movieName = nameSearchField.getText().trim().toLowerCase();
         int theatreID = -1;
-
         map = parseXML.getMoviesByName(theatreID, startT, endT, air, movieName, mode);
+
         this.printList(map);
 
     }
 
     @FXML
+
     private void printList(Map<String, ArrayList<ShowData>> map) {
         if (map.isEmpty()) {
             JOptionPane.showConfirmDialog(null, "Näillä hakuvalinnoilla ei löytynyt yhtään sopivaa kohdetta", "Ei hakutuloksia", JOptionPane.PLAIN_MESSAGE);
@@ -157,14 +170,6 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
         }
-    }
-
-    @FXML
-    private void loading(ActionEvent event) {
-        //
-        progressIndicatorLabel.setVisible(true);
-        progressIndicatorIcon.setVisible(true);
-        //
     }
 
     public class TestException extends Exception {
