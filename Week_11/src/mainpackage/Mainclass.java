@@ -21,7 +21,7 @@ public class Mainclass extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+        root.setStyle("-fx-background-image:url('" + getClass().getResource("Suomen-kartta.jpg").toExternalForm() + "')");
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
