@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.web.*?>
 <?import javafx.scene.control.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpackage.FXMLDocumentController">
-    <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
-    </children>
-</AnchorPane>
+<VBox fx:id="vBOX" prefHeight="538.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpackage.FXMLDocumentController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="savePageButton" mnemonicParsing="false" onAction="#savePage" text="Save(NOT_USED)">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem fx:id="newTabButton" mnemonicParsing="false" onAction="#openTab" text="New Tab">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="clearHistory" mnemonicParsing="false" onAction="#clearHistory" text="Clear Browsing History" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <HBox fillHeight="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="730.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="backPageButton" disable="true" minHeight="25.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#backPage" text="Back" HBox.hgrow="NEVER" />
+            <Button fx:id="nextPageButton" disable="true" minHeight="25.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#nextPage" text="Next" HBox.hgrow="NEVER" />
+            <Button fx:id="refreshButton" minHeight="25.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#refreshPage" text="Refresh" HBox.hgrow="NEVER" />
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="25.0" prefWidth="568.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="searchBar" layoutX="80.0" onAction="#searchWebsite" prefHeight="25.0" prefWidth="563.0" promptText="Enter internet address here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <TabPane fx:id="tabPane" tabClosingPolicy="ALL_TABS" tabMaxWidth="100.0" tabMinWidth="100.0" VBox.vgrow="ALWAYS" />
+   </children>
+</VBox>
