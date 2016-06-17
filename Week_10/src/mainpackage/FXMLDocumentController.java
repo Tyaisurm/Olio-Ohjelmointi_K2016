@@ -6,40 +6,27 @@
 package mainpackage;
 
 import java.net.URL;
-import java.util.EventListener;
-import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.PopupFeatures;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javax.swing.JOptionPane;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
  *
@@ -49,8 +36,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private VBox vBOX;
-    //@FXML
-    //Stage stage = (Stage) vBOX.getScene().getWindow();
+    @FXML
+    private MenuBar menuBar;
+    @FXML
+    private Stage stage;
     @FXML
     private MenuItem savePageButton;
     @FXML
@@ -71,12 +60,19 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.createTab(null, "");
+        //stage.setTitle("TSSFEF");
         tabPane.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<Tab>() {
                     @Override
                     public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
-                        System.out.println("TESTI!!!!!!!!!!!!!!111");
-                        //Tab selected = tabPane.getSelectionModel().getSelectedItem();
+                        stage = Mainclass.getStage();
+                        
+                        System.out.println("Tab suljettu tai avattu?");
+                        Tab selected = tabPane.getSelectionModel().getSelectedItem();
+                        if(selected!=null){
+                            stage.setTitle(selected.getText()+" - "+"Internet Crawler");
+                        }
+                        
                         if (t1 != null) {
                             AnchorPane ap = (AnchorPane) t1.getContent();
                             WebView wv = (WebView) ap.getChildren().get(0);
@@ -94,7 +90,7 @@ public class FXMLDocumentController implements Initializable {
                                     backPageButton.setDisable(false);
                                 }
                             } catch (IndexOutOfBoundsException ex) {
-                                System.out.println("NAPATTU!");
+                                System.out.println("Tabia vaihdettu!");
                             }
                         }
                     }
@@ -166,9 +162,10 @@ public class FXMLDocumentController implements Initializable {
                             if (title == null) {
                                 searchBar.setText(wv.getEngine().getLocation());
                                 tab.setText("New Tab");
+                                stage.setTitle("New Tab"+" - "+"Internet Crawler");
                             } else {
                                 searchBar.setText(wv.getEngine().getLocation());
-
+                                stage.setTitle(title+" - "+"Internet Crawler");
                                 tab.setText(title);
                             }
                         }
@@ -185,6 +182,8 @@ public class FXMLDocumentController implements Initializable {
         ap.setRightAnchor(wv, 0.0);
         tab.setContent(ap);
         tab.setText(nimi);
+        //stage.setTitle(nimi+" - "+"Internet Crawler");
+        
         //ObservableList<Entry> history = wv.getEngine().getHistory().getEntries();
         //ListIterator<Entry> iterator = history.listIterator();
         //tab.setUserData(iterator);
@@ -309,8 +308,10 @@ public class FXMLDocumentController implements Initializable {
                                 String title = wv.getEngine().getTitle();
                                 if (title == null) {
                                     tab.setText("-No Title-");
+                                    stage.setTitle("-No Title-"+" - "+"Internet Crawler");
                                 } else {
                                     tab.setText(title);
+                                    stage.setTitle(title+" - "+"Internet Crawler");
                                 }
                             }
                         }

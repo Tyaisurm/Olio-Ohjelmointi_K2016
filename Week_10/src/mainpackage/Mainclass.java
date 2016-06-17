@@ -18,14 +18,16 @@ import javafx.stage.Stage;
  */
 public class Mainclass extends Application {
     
+    private static Stage pStage;
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+        setStage(stage);
         Scene scene = new Scene(root);
-        stage.setTitle("Internet Crawler");
-        stage.setScene(scene);
-        stage.show();
+        pStage.setTitle("New Tab - Internet Crawler");
+        pStage.setScene(scene);
+        pStage.show();
     }
 
     /**
@@ -34,5 +36,11 @@ public class Mainclass extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    public static Stage getStage(){
+        return pStage;
+    }
+    private void setStage(Stage pStage){
+        Mainclass.pStage = pStage;
+    } 
     
 }
