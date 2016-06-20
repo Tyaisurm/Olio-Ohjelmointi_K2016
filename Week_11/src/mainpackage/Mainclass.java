@@ -24,16 +24,12 @@ public class Mainclass extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        stage.setX(bounds.getMinX());
-        stage.setY(bounds.getMinY());
-        stage.setWidth(bounds.getWidth());
-        stage.setHeight(bounds.getHeight());
-        
-        root.setStyle("-fx-background-image: url('" + getClass().getResource("Suomen-kartta.jpg").toExternalForm() + "');-fx-background-size: cover;-fx-background-position: center center");
+        root.setStyle("-fx-background-image: url('" + getClass().getResource("Suomen-kartta.jpg").toExternalForm() + "');-fx-background-size: contain;-fx-background-repeat: stretch;-fx-background-position: center center");
         Scene scene = new Scene(root);
-        
+        stage.setMaxHeight(912);
+        stage.setMaxWidth(728);
+        stage.setMinHeight(912);
+        stage.setMinWidth(728);
         stage.setScene(scene);
         stage.show();
     }
