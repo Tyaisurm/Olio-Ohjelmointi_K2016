@@ -54,19 +54,18 @@ public class FXMLDocumentController implements Initializable {
     private ProgressIndicator progressIndicatorIcon;//not visible
     @FXML
     private Label progressIndicatorLabel;//not visible
-    @FXML
     private ParseXML parseXML;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        listMoviesButton.setOnAction(new EventHandler<ActionEvent>(){
+        /*listMoviesButton.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e){
                 
             }
         }
-        );
+        );*/
         
         this.parseXML = ParseXML.getInstance();
         String code = parseXML.getCode("http://www.finnkino.fi/xml/TheatreAreas/");
@@ -84,6 +83,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void searchByDate(ActionEvent event) {
+        System.out.println("päästiin tänne");
         listView.getItems().clear();
         int mode = 0;
         Map<String, ArrayList<ShowData>> map = new TreeMap<>();
@@ -100,6 +100,7 @@ public class FXMLDocumentController implements Initializable {
          airingDateField.setText(air);
          }*/
         try {
+            //System.out.println("nyt tänne");
             sdfIN.setLenient(false);
             Date airD = sdfIN.parse(air);
 
@@ -109,7 +110,7 @@ public class FXMLDocumentController implements Initializable {
                     Date dateTime = sdfTime.parse(startT);
                     Date dateTime2 = sdfTime.parse(endT);
                 } else if (startT.isEmpty() && endT.isEmpty()) {
-                    //
+                    //System.out.println("täälläkin");
                 } else {
                     throw new TestException();
                 }
@@ -148,8 +149,6 @@ public class FXMLDocumentController implements Initializable {
         this.printList(map);
 
     }
-
-    @FXML
 
     private void printList(Map<String, ArrayList<ShowData>> map) {
         if (map.isEmpty()) {
